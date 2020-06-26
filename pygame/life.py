@@ -294,27 +294,36 @@ class LifeGame:
         pygame.draw.rect(screen, CURSOR_COLOR, Rect(self.cursor[0]*CELL_SIZE,self.cursor[1]*CELL_SIZE,CELL_SIZE,CELL_SIZE), 1)
         
         # draw menu background
-        pygame.draw.rect(screen, SIDE_COLOR,Rect(10,10,130,580))
+        pygame.draw.rect(screen, SIDE_COLOR,Rect(10,10,460,610))
 
         # show menu
-        screen.blit(self.font.render("CONTROLS:", True, black), (20,10))
-        screen.blit(self.font.render("Generation: %d" % self.generation, True, black), (20,22))
-        screen.blit(self.font.render("Space : Alive/Dead", True, black), (20,34))
-        screen.blit(self.font.render("S : Start/Stop", True, black), (20,46))
-        screen.blit(self.font.render("C : Clear", True, black), (20,58))
-        screen.blit(self.font.render("N : Next", True, black), (20,70))
-        screen.blit(self.font.render("R : Random", True, black), (20,82))
-        screen.blit(self.font.render("P : Pattern", True, black), (20,94))
+        screen.blit(self.font.render("CONTROLS:", True, black), (20,10))     
+        screen.blit(self.font.render("Space : Alive/Dead", True, black), (20,54))
+        screen.blit(self.font.render("S : Start/Stop", True, black), (20,66))
+        screen.blit(self.font.render("C : Clear", True, black), (20,78))
+        screen.blit(self.font.render("N : Next", True, black), (20,90))
+        screen.blit(self.font.render("R : Random", True, black), (20,102))
+        screen.blit(self.font.render("P : Pattern", True, black), (20,114))
         if self.mode == 0:
-            screen.blit(self.font.render("M : NORMAL", True, black), (20,106))
+            screen.blit(self.font.render("M : NORMAL", True, black), (20,126))
         elif self.mode == 1:
-            screen.blit(self.font.render("M : MARKED", True, black), (20,106))
+            screen.blit(self.font.render("M : MARKED", True, black), (20,126))
         elif self.mode == 2:
-            screen.blit(self.font.render("M : NEW_ALIVE", True, black), (20,106))
+            screen.blit(self.font.render("M : NEW_ALIVE", True, black), (20,126))
         elif self.mode == 3:
-            screen.blit(self.font.render("M : DIED_OUT", True, black), (20,106))
-        screen.blit(self.font.render("G : Grid", True, black), (20,119))
-        screen.blit(self.font.render("Q : Quit", True, black), (20,129))
+            screen.blit(self.font.render("M : DIED_OUT", True, black), (20,126))
+        screen.blit(self.font.render("G : Grid", True, black), (20,139))
+        screen.blit(self.font.render("Q : Quit", True, black), (20,149))
+
+        screen.blit(self.font.render("Generation: %d" % self.generation, True, black), (20,185))
+
+        #RULES 
+        screen.blit(self.font.render("GAME RULES:", True, black), (20,210))
+        screen.blit(self.font.render("If a cell is ON and has fewer than two neighbors that are ON, it turns OFF", True, black), (20,230))
+        screen.blit(self.font.render("If a cell is ON and has either two or three neighbors that are ON, it remains ON", True, black), (20, 250))
+        screen.blit(self.font.render("If a cell is ON and has more than three neighbors that are ON, it turns OFF", True, black), (20,270))
+        screen.blit(self.font.render("If a cell is OFF and has exactly three neighbors that are ON, it turns ON", True, black), (20,290))
+
 
     def countAliveCells(self, x, y):
         sum = 0
