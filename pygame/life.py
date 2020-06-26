@@ -1,6 +1,9 @@
+import os
 import pygame
+import pygame_menu
 from pygame.locals import *
 import random, sys
+import time
 
 SCR_RECT = Rect(0, 0, 1100, 600)
 CELL_SIZE = 10
@@ -294,24 +297,25 @@ class LifeGame:
         pygame.draw.rect(screen, SIDE_COLOR,Rect(10,10,130,580))
 
         # show menu
-        screen.blit(self.font.render("GENERATION: %d" % self.generation, True, black), (20,10))
-        screen.blit(self.font.render("SPACE : Alive/Dead", True, black), (20,22))
-        screen.blit(self.font.render("S : Start/Stop", True, black), (20,34))
-        screen.blit(self.font.render("C : Clear", True, black), (20,46))
-        screen.blit(self.font.render("N : Next", True, black), (20,58))
-        screen.blit(self.font.render("R : Random", True, black), (20,70))
-        screen.blit(self.font.render("P : Pattern", True, black), (20,82))
+        screen.blit(self.font.render("CONTROLS:", True, black), (20,10))
+        screen.blit(self.font.render("Generation: %d" % self.generation, True, black), (20,22))
+        screen.blit(self.font.render("Space : Alive/Dead", True, black), (20,34))
+        screen.blit(self.font.render("S : Start/Stop", True, black), (20,46))
+        screen.blit(self.font.render("C : Clear", True, black), (20,58))
+        screen.blit(self.font.render("N : Next", True, black), (20,70))
+        screen.blit(self.font.render("R : Random", True, black), (20,82))
+        screen.blit(self.font.render("P : Pattern", True, black), (20,94))
         if self.mode == 0:
-            screen.blit(self.font.render("M : NORMAL", True, black), (20,94))
+            screen.blit(self.font.render("M : NORMAL", True, black), (20,106))
         elif self.mode == 1:
-            screen.blit(self.font.render("M : MARKED", True, black), (20,94))
+            screen.blit(self.font.render("M : MARKED", True, black), (20,106))
         elif self.mode == 2:
-            screen.blit(self.font.render("M : NEW_ALIVE", True, black), (20,94))
+            screen.blit(self.font.render("M : NEW_ALIVE", True, black), (20,106))
         elif self.mode == 3:
-            screen.blit(self.font.render("M : DIED_OUT", True, black), (20,94))
-        screen.blit(self.font.render("G : Grid", True, black), (20,106))
-        screen.blit(self.font.render("Q : Quit", True, black), (20,119))
-    
+            screen.blit(self.font.render("M : DIED_OUT", True, black), (20,106))
+        screen.blit(self.font.render("G : Grid", True, black), (20,119))
+        screen.blit(self.font.render("Q : Quit", True, black), (20,129))
+
     def countAliveCells(self, x, y):
         sum = 0
         sum += self.univ[y-1][x-1]
@@ -325,4 +329,5 @@ class LifeGame:
         return sum
 
 if __name__ == "__main__":
+
     LifeGame()
